@@ -1,4 +1,12 @@
 
+function getStateDocRef() {
+  const pin = getFamilyPin();
+  if (!pin) return null;
+  // Documento único por familia:
+  // rooms/<PIN>/state/current
+  return doc(db, "rooms", pin, "state", "current");
+}
+
 // Firebase ya está inicializado en index.html y expuesto como window.FB
 const { db } = window.FB;
 
