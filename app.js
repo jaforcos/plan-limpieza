@@ -299,5 +299,41 @@ function getFamilyPin() {
 
   if('serviceWorker' in navigator) navigator.serviceWorker.register('./service-worker.js').catch(()=>{});
 
+// --- ✅ Paso 4: cargar estado remoto + escuchar cambios (Firestore) ---
+async function initSync() {
+  // 1) Obtener PIN y construir referencia al documento compartido
+  const pin = getFamilyPin();
+  if (!pin) return;
+
+  const ref = window.FBdoc(window.FBdb, "rooms", pin, "state", "current");
+
+  // 2) Leer estado inicial (si existe)
+  const snap = await window.FBgetDoc(ref);
+  if (snap.exists()) {
+    const remote = snap.data();
+    state.done = remote.done || {};
+    saveState();
+    render();
+  } else {
+    // Si no existe, lo creamos con lo que haya local
+    await window.FBsetDoc(ref, { done: state.done || {} }, { merge: true });
+  }
+
+  // 3) Escuchar cambios en tiempo real (cuando otro marque ✔)
+  window.FBonSnapshot(ref, (docSnap) => {
+    if (!docSnap.exists()) return;
+    const remote = docSnap.data();
+    state.done = remote.done || {};
+    saveState();
+    render();
+  });
+}
+
+// Lanzar sincronización
+initSync();
+
+
+
+  
   render();
 })();
