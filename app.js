@@ -1,7 +1,33 @@
+
+// Firebase ya está inicializado en index.html y expuesto como window.FB
+const { db } = window.FB;
+
+// Firestore (módulos vía CDN)
+import {
+  doc, getDoc, setDoc, onSnapshot
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+
 (() => {
   const LS_KEY='planLimpieza2026_infantil_v1';
   const data=window.PLAN_DATA;
   const PLAN_START_ISO = data.rules?.planStartDate || '2026-02-07';
+
+  
+// --- PIN familiar (misma familia = mismo estado compartido) ---
+const PIN_KEY = 'planLimpieza_family_pin';
+
+function getFamilyPin() {
+  let pin = localStorage.getItem(PIN_KEY);
+  if (!pin) {
+    pin = prompt('Introduce el PIN de la familia (lo mismo en todos los móviles):') || '';
+    pin = pin.trim();
+    if (!pin) return null;
+    localStorage.setItem(PIN_KEY, pin);
+  }
+  return pin;
+}
+
 
   const toISO = (d) => {
     const y=d.getFullYear();
