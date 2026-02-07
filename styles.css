@@ -1,0 +1,54 @@
+
+:root{--bg:#071021;--text:#eef4ff;--muted:#b9c7e6;--primary:#2f7dd6;--primary2:#1F4E79;--border:rgba(255,255,255,.14);--ok:#1aa179;--danger:#c43d3d;--card:rgba(255,255,255,.04)}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,#071021,#0b1220 50%,#0b1220);color:var(--text)}
+.app-header{position:sticky;top:0;z-index:10;background:rgba(11,18,32,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:14px}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.06);border:1px solid var(--border);font-size:26px}
+h1{margin:0;font-size:20px}
+.subtitle{margin:4px 0 0;color:var(--muted);font-size:13px}
+.controls{margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.control{display:flex;flex-direction:column;gap:6px}
+label{font-size:12px;color:var(--muted)}
+small{font-size:11px;color:var(--muted)}
+input,select{background:rgba(255,255,255,.07);border:1px solid var(--border);color:var(--text);padding:12px;border-radius:16px;font-size:16px}
+.buttons{grid-column:1/-1;display:flex;gap:10px;flex-wrap:wrap}
+button{background:linear-gradient(180deg,var(--primary),#1f5ea6);border:1px solid rgba(255,255,255,.18);color:#fff;padding:12px 14px;border-radius:16px;font-weight:900;font-size:16px;cursor:pointer}
+button:hover{filter:brightness(1.05)}
+.container{padding:12px 12px 90px;max-width:980px;margin:0 auto}
+.panel{display:none}
+.panel.active{display:block}
+.kid-note{display:flex;gap:10px;align-items:flex-start;border:1px dashed rgba(255,255,255,.22);background:rgba(255,255,255,.03);padding:10px 12px;border-radius:16px;color:var(--muted);font-size:12px;margin-bottom:10px}
+.kid-note b{color:var(--text)}
+.day-title{margin:14px 0 8px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.day-title h3{margin:0;font-size:14px}
+.badge{font-size:12px;padding:4px 10px;border:1px solid var(--border);border-radius:999px;color:var(--muted)}
+.badge.pending{border-color:rgba(255,208,140,.6);color:#ffd08c}
+
+.person-group{border:1px solid var(--border);border-radius:18px;background:var(--card);overflow:hidden;margin-bottom:10px}
+.person-head{width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 12px;background:rgba(47,125,214,.12)}
+.person-left{display:flex;align-items:center;gap:10px}
+.person-emoji{width:36px;height:36px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.06);border:1px solid var(--border);font-size:18px}
+.person-name{font-weight:900}
+.person-badges{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--border);font-size:12px;color:var(--muted)}
+.person-body{padding:10px 12px;display:none}
+.person-group.open .person-body{display:block}
+
+.task-cards{display:grid;gap:10px}
+.task-card{border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,.03);padding:12px}
+.task-top{display:flex;justify-content:space-between;gap:10px}
+.task-person{font-weight:900}
+.task-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.task-text{margin-top:6px}
+.checkbox{width:22px;height:22px;accent-color:var(--ok)}
+
+.bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(11,18,32,.92);backdrop-filter:blur(8px);border-top:1px solid var(--border);display:flex;gap:8px}
+.nav-btn{flex:1;background:transparent;border:1px solid var(--border);color:var(--muted);padding:10px 8px;border-radius:16px;font-weight:900}
+.nav-btn.active{background:rgba(47,125,214,.18);color:var(--text);border-color:rgba(47,125,214,.45)}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.card{border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,.03);padding:12px}
+.card.danger button{background:var(--danger)}
+
+@media (min-width:860px){.controls{grid-template-columns:260px 260px 1fr}.buttons{grid-column:auto}.bottom-nav{max-width:720px;margin:0 auto}}

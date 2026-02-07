@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Plan de limpieza familiar</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#2f7dd6" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+</head>
+<body>
+<header class="app-header">
+  <div class="brand">
+    <div class="logo">🧽</div>
+    <div>
+      <h1>Plan de limpieza</h1>
+      <p class="subtitle">Fácil para todos · Marca ✔ y listo</p>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="control">
+      <label>📅 Fecha</label>
+      <input id="startDateText" type="text" inputmode="numeric" placeholder="dd/mm/aaaa" maxlength="10" />
+      <small>Desde 07/02/2026</small>
+    </div>
+
+    <div class="control">
+      <label>🌀 Sábado</label>
+      <select id="rotation">
+        <option value="AUTO">Automática</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+      </select>
+      <small id="rotationHint">—</small>
+    </div>
+
+    <div class="control buttons">
+      <button id="btnToday" type="button">🏠 HOY</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="kid-note">✨ <b>Muy fácil:</b> toca un nombre para ver sus tareas. Marca ✔ cuando termines.</div>
+
+  <section class="panel active">
+    <div id="dayContent"></div>
+  </section>
+
+  <section id="panel-extras" class="panel">
+    <div class="panel-header"><h2>⭐ Extras</h2><p class="muted">Una vez al mes</p></div>
+    <div id="extrasContent"></div>
+  </section>
+
+  <section id="panel-ajustes" class="panel">
+    <div class="panel-header"><h2>⚙ Ajustes</h2></div>
+    <div class="cards">
+      <div class="card"><h3>Exportar</h3><button id="btnExport" type="button">Exportar</button></div>
+      <div class="card"><h3>Importar</h3><input id="importFile" type="file" accept="application/json" /></div>
+      <div class="card danger"><h3>Reiniciar</h3><button id="btnReset" type="button">Reiniciar</button></div>
+    </div>
+  </section>
+</main>
+
+<nav class="bottom-nav">
+  <button class="nav-btn active" data-tab="day">Día</button>
+  <button class="nav-btn" data-tab="extras">Extras</button>
+  <button class="nav-btn" data-tab="ajustes">⚙</button>
+</nav>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
